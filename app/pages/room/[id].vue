@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-  import { Rooms } from '#imports'
-
   const route = useRoute()
+  const roomsStore = useRoomsStore()
   const roomName = route.params.id as string
-  const roomData = Rooms[roomName]
+  const roomData = roomsStore.rooms[roomName]
 </script>
 
 <template>

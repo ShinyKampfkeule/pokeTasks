@@ -1,5 +1,7 @@
 <script setup lang="ts">
-  import { Rooms } from '#imports'
+  import { useRoomsStore } from '~/stores/rooms'
+
+  const roomsStore = useRoomsStore()
 </script>
 
 <template>
@@ -11,7 +13,7 @@
     <div class="flex-1 flex flex-wrap items-start justify-center gap-10 pt-10 overflow-y-auto">
       <div class="flex flex-wrap justify-center max-w-229 gap-5">
         <RoomCard
-          v-for="(roomData, roomName) in Rooms"
+          v-for="(roomData, roomName) in roomsStore.rooms"
           :key="roomName"
           :name="roomName"
           :icon="roomData.icon"

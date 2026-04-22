@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-  const tasks = [
-    { id: 1, title: 'I´m a task' },
-    { id: 2, title: 'I`m a task too' },
-    { id: 3, title: 'I am also an task' }
-  ]
-
   const props = defineProps({
     roomName: { type: String, required: true },
     primaryColor: { type: String, required: true },
@@ -12,6 +6,18 @@
     primaryType: { type: String, required: true },
     secondaryType: { type: String, required: true }
   })
+
+  const roomsStore = useRoomsStore()
+  const room = roomsStore.rooms[props.roomName]
+
+  if (!room) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Room not found',
+      message: 'The room you are looking for does not exists.',
+      fatal: true
+    })
+  }
 </script>
 
 <template>
@@ -24,11 +30,12 @@
         :primary-type="primaryType"
         :secondary-type="secondaryType"
       />
-      <RTCAddTask :primary-color="primaryColor" />
+      <RTCAddTask :room-name="roomName" :primary-color="primaryColor" />
       <div class="flex flex-col gap-2.5">
         <Task
-          v-for="task in tasks"
+          v-for="task in room.tasks"
           :key="task.id"
+          :id="task.id"
           :label="task.title"
           :primary-color="primaryColor"
           :secondary-color="secondaryColor"

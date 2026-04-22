@@ -1,4 +1,10 @@
-<script setup>
+<script setup lang="ts">
+  import type { NuxtError } from '#app'
+
+  const props = defineProps<{
+    error: NuxtError
+  }>()
+
   useHead({
     meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
     link: [{ rel: 'icon', href: '/pokeball.png' }],
@@ -22,6 +28,6 @@
 
 <template>
   <UApp>
-    <NuxtPage />
+    <UError :error="error" />
   </UApp>
 </template>
