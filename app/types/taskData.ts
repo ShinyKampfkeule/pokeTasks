@@ -1,4 +1,5 @@
 export type TaskData = {
-  id: number
   title: string
+  completed: boolean
+  confirmedCompletion: boolean
 }

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-  import type { TaskData } from '~/types/taskData'
-
   const props = defineProps({
     roomName: { type: String, required: true },
     primaryColor: { type: String, required: true }
@@ -12,7 +10,11 @@
   const addTask = () => {
     if (value.value.trim() === '') return
 
-    roomsStore.addTask(props.roomName, { id: Date.now(), title: value.value })
+    roomsStore.addTask(props.roomName, Date.now().toString(), {
+      title: value.value,
+      completed: false,
+      confirmedCompletion: false
+    })
 
     value.value = ''
   }

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { PokemonData } from '~/types/pokemonData'
+import type { PokemonTypes } from '~/types/pokemonTypes'
 
 export const usePokemonStore = defineStore('pokemonStore', {
   state: () => {
@@ -22112,5 +22113,14 @@ export const usePokemonStore = defineStore('pokemonStore', {
         }
       ]
     } as { pokemon: PokemonData[] }
+  },
+  actions: {
+    getCachtablePokemon(types: String[]): PokemonData[] {
+      return this.pokemon.filter(
+        (pokemon) =>
+          types.includes(pokemon.pokemontypes[0].type.name) ||
+          (pokemon.pokemontypes[1] && types.includes(pokemon.pokemontypes[1].type.name))
+      )
+    }
   }
 })

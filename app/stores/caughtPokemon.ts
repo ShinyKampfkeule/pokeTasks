@@ -14,6 +14,13 @@ export const useCaughtPokemonStore = defineStore('myCaughtPokemonStore', {
       } else {
         this.caughtDefault.push(id)
       }
+    },
+    isAlreadyCaught(id: number, shiny: boolean) {
+      if (shiny) {
+        return this.caughtShiny.includes(id)
+      } else {
+        return this.caughtDefault.includes(id)
+      }
     }
   }
 })

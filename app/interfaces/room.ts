@@ -1,4 +1,4 @@
-import type { TaskData } from '~/types/taskData'
+import type { TaskEntryInterface } from './taskEntry'
 
 export interface RoomInterface {
   icon: string
@@ -6,5 +6,5 @@ export interface RoomInterface {
   secondaryType: string
   primaryColor: string
   secondaryColor: string
-  tasks: TaskData[]
+  tasks: TaskEntryInterface
 }
