@@ -1,6 +1,9 @@
 <script setup lang="ts">
+  import { useMutation, useQueryClient } from '@tanstack/vue-query'
+
   const props = defineProps({
-    id: { type: String, required: true },
+    roomId: { type: String, required: true },
+    taskId: { type: String, required: true },
     label: { type: String, required: true },
     completed: { type: Boolean, required: true },
     confirmedCompletion: { type: Boolean, required: true },
@@ -10,6 +13,24 @@
   })
 
   const roomsStore = useRoomsStore()
+
+  const queryClient = useQueryClient()
+  const { isPending, isError, error, isSuccess, mutate } = useMutation({
+    mutationFn: () =>
+      $fetch('/api/tasks/completeTask', {
+        method: 'POST',
+        body: {
+          taskId: props.taskId
+        }
+      }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['room', props.roomId] })
+    }
+  })
+
+  const handleTaskCompletion = () => {
+    mutate()
+  }
 </script>
 
 <template>
@@ -20,14 +41,14 @@
       color: primaryColor,
       border: `1px solid ${completed ? '#00dc82' : primaryColor}`
     }"
-    @click="roomsStore.setTaskCompletionStatus(roomName, id)"
+    @click="() => handleTaskCompletion()"
   >
     <span>{{ label }}</span>
     <UIcon
       name="i-lucide-trash-2"
       size="20"
       class="text-red-500 cursor-pointer"
-      @click="roomsStore.removeTask(roomName, id)"
+      @click="roomsStore.removeTask(roomName, taskId)"
     />
   </div>
 </template>
