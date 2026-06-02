@@ -26,9 +26,10 @@
 <template>
   <UHeader
     :ui="{
-      root: ['bg-primary border-none'],
+      root: ['bg-primary border-none shadow-md'],
       container: ['mx-0 max-w-full'],
-      center: ['h-full']
+      center: ['h-full'],
+      right: ['gap-4']
     }"
   >
     <template #title>
@@ -50,6 +51,15 @@
     />
 
     <template #right>
+      <UIcon name="i-lucide-bell-dot" />
+      <div class="flex gap-2 items-center">
+        <UAvatar icon="i-lucide-user" />
+        <div class="flex flex-col">
+          <span class="text-sm font-medium">GoodMum404</span>
+          <span class="text-xs">Parent</span>
+        </div>
+        <UIcon name="i-lucide-chevron-down" />
+      </div>
       <UColorModeButton />
     </template>
   </UHeader>
