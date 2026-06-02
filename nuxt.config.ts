@@ -30,5 +30,21 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: ['@tanstack/vue-query', 'valibot']
     }
+  },
+
+  app: {
+    head: {
+      script: [
+        {
+          innerHTML: `
+            (function() {
+              const colorMode = localStorage.getItem('nuxt-color-mode') || 'light'
+              document.documentElement.setAttribute('data-ui-color-scheme', colorMode)
+            })()
+          `,
+          type: 'text/javascript'
+        }
+      ]
+    }
   }
 })
