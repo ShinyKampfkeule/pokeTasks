@@ -31,9 +31,9 @@
       list: ['h-full'],
       item: ['h-full py-0 w-40'],
       link: [
-        'h-full before:rounded-none justify-center p-0 data-active:before:border-t-4 data-active:before:border-t-[var(--ui-border-inverted)] data-active:text-[var(--ui-text)]'
+        'h-full before:rounded-none justify-center p-0 data-active:before:border-t-4 data-active:before:border-t-[var(--accent)] text-[var(--foreground)]'
       ],
-      linkLeadingIcon: ['text-[var(--ui-text)]']
+      linkLeadingIcon: ['text-[var(--foreground)]']
     }"
   />
 </template>

@@ -33,6 +33,16 @@
 
 <template>
   <UFormField class="w-1/2" :label="label" name="type1" :ui="{ label: 'text-black' }">
-    <USelect class="w-full" v-model="type" :items="types" :avatar="typeAvatar" />
+    <USelect
+      class="w-full"
+      v-model="type"
+      :items="types"
+      :avatar="typeAvatar"
+      :ui="{
+        base: [
+          'bg-transparent hover:bg-transparent hover:ring-(--primary) shadow-md ring-(--foreground)/25 focus:ring-(--primary) focus-visible:ring-(--primary)'
+        ]
+      }"
+    />
   </UFormField>
 </template>

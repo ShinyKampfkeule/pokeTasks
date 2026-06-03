@@ -8,6 +8,8 @@
 @layer base {
   [data-ui-color-scheme='light'] {
     --ui-primary: #818ffe;
+    --ui-secondary: #ff7575;
+    --ui-neutral: #e8e4f6;
     --ui-text-dimmed: #0d091b;
     --ui-text-muted: #0d091b;
     --ui-text-toned: #0d091b;
@@ -19,8 +21,8 @@
     --ui-bg-elevated: #e8e4f6;
     --ui-bg-accented: #e8e4f6;
     --ui-bg-inverted: #0d091b;
-    --ui-border: #818ffe;
-    --ui-border-muted: #818ffe;
+    --ui-border: #e8e4f650;
+    --ui-border-muted: #e8e4f6;
     --ui-border-accented: #dbc84d;
     --ui-border-inverted: #ff7575;
 
@@ -33,7 +35,8 @@
 
   [data-ui-color-scheme='dark'] {
     --ui-primary: #01107e;
-
+    --ui-secondary: #8a0000;
+    --ui-neutral: #e8e4f6;
     --ui-text-dimmed: #e8e4f6;
     --ui-text-muted: #e8e4f6;
     --ui-text-toned: #e8e4f6;
@@ -45,8 +48,8 @@
     --ui-bg-elevated: #0d091b;
     --ui-bg-accented: #0d091b;
     --ui-bg-inverted: #e8e4f6;
-    --ui-border: #01107e;
-    --ui-border-muted: #01107e;
+    --ui-border: #e8e4f650;
+    --ui-border-muted: #e8e4f6;
     --ui-border-accented: #b29f24;
     --ui-border-inverted: #8a0000;
 
@@ -56,4 +59,8 @@
     --secondary: #8a0000;
     --accent: #b29f24;
   }
+}
+
+body {
+  background-color: var(--background);
 }

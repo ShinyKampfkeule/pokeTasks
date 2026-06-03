@@ -1,26 +1,23 @@
-<script setup>
-  import HTitle from './HTitle.vue'
-  import HMenu from './HMenu.vue'
-  import HRightContent from './HRightContent.vue'
-</script>
+<script setup></script>
 
 <template>
   <UHeader
     :ui="{
-      root: ['bg-primary border-none shadow-md'],
+      root: ['bg-(--primary) border-none shadow-md'],
       container: ['mx-0 max-w-full'],
       center: ['h-full'],
-      right: ['gap-4']
+      right: ['gap-4'],
+      title: ['text-(--foreground) hover:text-(--foreground)']
     }"
   >
     <template #title>
-      <HTitle />
+      <HeaderTitle />
     </template>
 
-    <HMenu />
+    <HeaderMenu />
 
     <template #right>
-      <HRightContent />
+      <HeaderRightContent />
     </template>
   </UHeader>
 </template>

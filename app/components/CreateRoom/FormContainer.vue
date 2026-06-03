@@ -28,8 +28,10 @@
     :state="state"
     @submit="onSubmit"
   >
-    <CRMNameInput v-model:name="state.name" />
-    <CRMIconSelect v-model:icon="state.icon" />
+    <div class="w-full flex items-end gap-4">
+      <CreateRoomIconSelect v-model:icon="state.icon" />
+      <CreateRoomNameInput v-model:name="state.name" />
+    </div>
     <div class="w-full flex gap-12">
       <CRMTypeSelect v-model:type="state.type1" label="Type 1" />
       <CRMTypeSelect v-model:type="state.type2" label="Type 2" />
