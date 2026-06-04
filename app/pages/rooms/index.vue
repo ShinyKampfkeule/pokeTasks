@@ -1,6 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  definePageMeta({
+    layout: 'rooms'
+  })
+</script>
 
 <template>
   <RoomsContent />
-  <RoomsSidebar />
 </template>

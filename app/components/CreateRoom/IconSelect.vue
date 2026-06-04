@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <UFormField label="Icon" name="icon" :ui="{ label: 'text-black' }">
+  <UFormField label="Icon" name="icon" :ui="{ label: 'text-(--foreground)' }">
     <UPopover
       v-model:open="open"
       :ui="{

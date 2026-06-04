@@ -26,7 +26,9 @@
   <UApp>
     <Header />
     <UMain class="flex p-4">
-      <NuxtPage />
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </UMain>
   </UApp>
 </template>

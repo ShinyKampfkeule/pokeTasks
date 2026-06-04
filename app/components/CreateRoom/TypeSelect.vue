@@ -32,7 +32,7 @@
 </script>
 
 <template>
-  <UFormField class="w-1/2" :label="label" name="type1" :ui="{ label: 'text-black' }">
+  <UFormField class="w-1/2" :label="label" name="type1" :ui="{ label: 'text-(--foreground)' }">
     <USelect
       class="w-full"
       v-model="type"
@@ -41,7 +41,9 @@
       :ui="{
         base: [
           'bg-transparent hover:bg-transparent hover:ring-(--primary) shadow-md ring-(--foreground)/25 focus:ring-(--primary) focus-visible:ring-(--primary)'
-        ]
+        ],
+        itemLeadingAvatar: ['bg-(--primary)'],
+        content: ['bg-(--background) ring-(--foreground)/25 shadow-md']
       }"
     />
   </UFormField>

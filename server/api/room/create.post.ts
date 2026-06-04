@@ -8,9 +8,7 @@ export default defineEventHandler(async (event) => {
     secondaryColor: string
   }
 
-  const createdRoom = await prisma.room.create({
+  await prisma.room.create({
     data: body
   })
-
-  console.log(createdRoom)
 })

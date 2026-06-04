@@ -14,9 +14,10 @@
 </script>
 
 <template>
-  <NuxtLink :to="`/room/${id}`">
-    <div
-      class="flex flex-col items-center justify-center gap-5 w-md h-50 border-4 rounded-lg cursor-pointer"
+  <div class="flex justify-center items-center w-full">
+    <NuxtLink
+      :to="`/room/${id}`"
+      class="flex flex-col items-center justify-center gap-5 w-3/4 xl:w-full h-50 border-4 rounded-md shadow-md cursor-pointer"
       :style="{
         backgroundColor: secondaryColor,
         borderColor: primaryColor,
@@ -26,6 +27,6 @@
       <RoomTitle :name="name" :icon="icon" />
       <RoomTypeBadges :type1="type1" :type2="type2" />
       <span>{{ tasks.filter((task) => task.completed).length }} / {{ tasks.length }}</span>
-    </div>
-  </NuxtLink>
+    </NuxtLink>
+  </div>
 </template>

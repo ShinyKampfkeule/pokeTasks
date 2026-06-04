@@ -3,13 +3,13 @@
 </script>
 
 <template>
-  <UFormField label="Name" name="name" :ui="{ label: 'text-black', root: 'w-full' }">
+  <UFormField label="Name" name="name" :ui="{ label: 'text-(--foreground)', root: 'w-full' }">
     <UInput
       v-model="name"
       variant="outline"
       :ui="{
         root: 'w-full',
-        base: 'bg-transparent shadow-md border-1 border-(--foreground)/25 focus-visible:ring-(--primary)'
+        base: 'bg-transparent shadow-md ring ring-(--foreground)/25 hover:ring-(--primary) focus:ring-(--primary) focus-visible:ring-(--primary)'
       }"
     />
   </UFormField>

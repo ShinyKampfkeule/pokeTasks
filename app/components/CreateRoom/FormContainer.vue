@@ -2,6 +2,7 @@
   import type { FormSubmitEvent } from '@nuxt/ui'
   import type { CreateRoomState } from '~/types/createRoomState'
   import * as v from 'valibot'
+  import { useMutation, useQueryClient } from '@tanstack/vue-query'
 
   const state = defineModel<CreateRoomState>('state')
 
@@ -15,40 +16,59 @@
   })
   type Schema = v.InferOutput<typeof schema>
 
+  const queryClient = useQueryClient()
+  const { isPending, isError, error, isSuccess, mutate } = useMutation({
+    mutationFn: () =>
+      $fetch('/api/room/create', {
+        method: 'POST',
+        body: state.value
+      }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['rooms'] })
+      navigateTo('/rooms')
+    }
+  })
+
   async function onSubmit(event: FormSubmitEvent<Schema>) {
-    console.log(event.data)
+    mutate()
   }
 </script>
 
 <template>
   <UForm
     v-if="state"
-    class="flex flex-col gap-4 w-1/2"
+    class="flex flex-col items-center justify-center gap-8 w-2/3"
     :schema="schema"
     :state="state"
     @submit="onSubmit"
   >
-    <div class="w-full flex items-end gap-4">
+    <div class="w-1/2 flex items-end gap-4">
       <CreateRoomIconSelect v-model:icon="state.icon" />
       <CreateRoomNameInput v-model:name="state.name" />
     </div>
-    <div class="w-full flex gap-12">
-      <CRMTypeSelect v-model:type="state.type1" label="Type 1" />
-      <CRMTypeSelect v-model:type="state.type2" label="Type 2" />
+    <div class="w-1/2 flex gap-12">
+      <CreateRoomTypeSelect v-model:type="state.type1" label="Type 1" />
+      <CreateRoomTypeSelect v-model:type="state.type2" label="Type 2" />
     </div>
     <div class="flex justify-center gap-12">
-      <CRMColorPicker
+      <CreateRoomColorPicker
         v-model:color="state.primaryColor"
         label="Primary Color"
         name="primaryColor"
       />
-      <CRMColorPicker
+      <CreateRoomColorPicker
         v-model:color="state.secondaryColor"
         label="Secondary Color"
         name="secondaryColor"
       />
     </div>
 
-    <UButton type="submit">Create Room</UButton>
+    <UButton
+      type="submit"
+      :ui="{
+        base: ['bg-(--secondary) text-(--foreground)']
+      }"
+      >Create Room</UButton
+    >
   </UForm>
 </template>

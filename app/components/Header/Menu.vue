@@ -1,24 +1,30 @@
 <script setup>
+  const route = useRoute()
+
   const items = computed(() => [
     {
       label: 'Rooms',
       icon: 'i-lucide-home',
-      to: '/rooms'
+      to: '/rooms',
+      active: route.path.startsWith('/rooms')
     },
     {
       label: 'Pokedex',
       icon: 'i-lucide-list',
-      to: '/pokedex'
+      to: '/pokedex',
+      active: route.path.startsWith('/pokedex')
     },
     {
       label: 'Messages',
       icon: 'i-lucide-message-circle-more',
-      to: '/messages'
+      to: '/messages',
+      active: route.path.startsWith('/messages')
     },
     {
       label: 'Settings',
       icon: 'i-lucide-sliders-horizontal',
-      to: '/settings'
+      to: '/settings',
+      active: route.path.startsWith('/settings')
     }
   ])
 </script>
