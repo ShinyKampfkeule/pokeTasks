@@ -17,16 +17,22 @@
   <div class="flex justify-center items-center w-full">
     <NuxtLink
       :to="`/room/${id}`"
-      class="flex flex-col items-center justify-center gap-5 w-3/4 xl:w-full h-50 border-4 rounded-md shadow-md cursor-pointer"
+      class="flex flex-col justify-between gap-5 w-3/4 xl:w-full border-4 rounded-md shadow-md cursor-pointer p-4"
       :style="{
         backgroundColor: secondaryColor,
         borderColor: primaryColor,
         color: primaryColor
       }"
     >
-      <RoomTitle :name="name" :icon="icon" />
+      <div class="w-full flex items-center justify-between">
+        <RoomTitle :name="name" :icon="icon" />
+        <UIcon name="i-lucide-ellipsis-vertical" />
+      </div>
       <RoomTypeBadges :type1="type1" :type2="type2" />
-      <span>{{ tasks.filter((task) => task.completed).length }} / {{ tasks.length }}</span>
+      <div class="w-full flex justify-between">
+        <span>Tasks:</span>
+        <span>{{ tasks.filter((task) => !task.completed).length }}</span>
+      </div>
     </NuxtLink>
   </div>
 </template>
