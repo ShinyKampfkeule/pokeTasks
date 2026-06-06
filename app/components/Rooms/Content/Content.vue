@@ -33,6 +33,7 @@
       :primary-color="room.primaryColor"
       :secondary-color="room.secondaryColor"
       :tasks="room.tasks"
+      :preview="false"
     />
   </div>
 </template>

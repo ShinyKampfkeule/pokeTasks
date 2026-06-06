@@ -25,13 +25,16 @@
     />
     <div class="h-full w-1/3 flex flex-col gap-8 items-center justify-center">
       <span class="text-xl">Room Card Preview</span>
-      <RoomCardPreview
+      <RoomCard
+        id=""
         :name="state.name"
         :icon="state.icon"
         :type1="state.type1"
         :type2="state.type2"
         :primary-color="state.primaryColor"
         :secondary-color="state.secondaryColor"
+        :tasks="[]"
+        :preview="true"
       />
     </div>
   </div>

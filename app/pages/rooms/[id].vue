@@ -1,6 +1,14 @@
 <script lang="ts" setup>
   import { useQuery } from '@tanstack/vue-query'
   import { roomFetcher } from '~/fetcher/roomFetcher'
+  import type { NewCaughtPokemon } from '~/types/newCaughtPokemon'
+
+  definePageMeta({
+    layout: 'rooms'
+  })
+
+  const openModal = ref(false)
+  const newCaughtPokemon = ref<NewCaughtPokemon>([])
 
   const route = useRoute()
   const roomId = route.params.id as string
@@ -13,15 +21,22 @@
 </script>
 
 <template>
+  <CaughtPokemonModal v-model:open-modal="openModal" v-model:newCaughtPokemon="newCaughtPokemon" />
   <div
     v-if="room"
-    class="flex flex-col items-center h-screen"
+    class="flex flex-col gap-8 p-8 h-full rounded-md shadow-md"
     :style="{
       backgroundColor: room.secondaryColor
     }"
   >
-    <RoomTasksHeader :primaryColor="room.primaryColor" />
-    <RoomTasksContainer
+    <RoomHeader
+      :name="room.name"
+      :primaryColor="room.primaryColor"
+      :secondary-color="room.secondaryColor"
+      :type1="room.type1"
+      :type2="room.type2"
+    />
+    <RoomContent
       :roomId="room.id"
       :name="room.name"
       :primary-color="room.primaryColor"
@@ -29,7 +44,8 @@
       :type1="room.type1"
       :type2="room.type2"
       :tasks="room.tasks"
+      :v-model:new-caught-pokemon="newCaughtPokemon"
+      :v-model:open-modal="openModal"
     />
-    <MenuBar />
   </div>
 </template>

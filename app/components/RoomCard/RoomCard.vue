@@ -9,14 +9,15 @@
     type2: { type: String, required: true },
     primaryColor: { type: String, required: true },
     secondaryColor: { type: String, required: true },
-    tasks: { type: Array as PropType<TaskDataInterface[]>, required: true }
+    tasks: { type: Array as PropType<TaskDataInterface[]>, required: true },
+    preview: { type: Boolean, required: true }
   })
 </script>
 
 <template>
   <div class="flex justify-center items-center w-full">
     <NuxtLink
-      :to="`/room/${id}`"
+      :to="`/rooms/${id}`"
       class="flex flex-col justify-between gap-5 w-3/4 xl:w-full border-4 rounded-md shadow-md cursor-pointer p-4"
       :style="{
         backgroundColor: secondaryColor,
@@ -25,10 +26,10 @@
       }"
     >
       <div class="w-full flex items-center justify-between">
-        <RoomTitle :name="name" :icon="icon" />
-        <UIcon name="i-lucide-ellipsis-vertical" />
+        <RoomCardTitle :name="name" :icon="icon" />
+        <UIcon v-if="!preview" name="i-lucide-ellipsis-vertical" />
       </div>
-      <RoomTypeBadges :type1="type1" :type2="type2" />
+      <TypeBadges :type1="type1" :type2="type2" />
       <div class="w-full flex justify-between">
         <span>Tasks:</span>
         <span>{{ tasks.filter((task) => !task.completed).length }}</span>
