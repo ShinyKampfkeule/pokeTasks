@@ -1,22 +1,34 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+  import { useMutation, useQueryClient } from '@tanstack/vue-query'
+
   const props = defineProps({
-    roomName: { type: String, required: true },
+    roomId: { type: String, required: true },
     primaryColor: { type: String, required: true }
   })
 
   const value = ref('')
-  const roomsStore = useRoomsStore()
+
+  const queryClient = useQueryClient()
+  const { isPending, isError, error, isSuccess, mutate } = useMutation({
+    mutationFn: () =>
+      $fetch<unknown>('/api/tasks/addTask', {
+        method: 'POST',
+        body: {
+          title: value.value,
+          roomId: props.roomId
+        }
+      }),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['room', props.roomId] })
+      await queryClient.invalidateQueries({ queryKey: ['rooms'] })
+      value.value = ''
+    }
+  })
 
   const addTask = () => {
     if (value.value.trim() === '') return
 
-    roomsStore.addTask(props.roomName, Date.now().toString(), {
-      title: value.value,
-      completed: false,
-      confirmedCompletion: false
-    })
-
-    value.value = ''
+    mutate()
   }
 </script>
 

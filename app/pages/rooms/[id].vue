@@ -4,7 +4,8 @@
   import type { NewCaughtPokemon } from '~/types/newCaughtPokemon'
 
   definePageMeta({
-    layout: 'rooms'
+    layout: 'rooms',
+    middleware: ['authenticated']
   })
 
   const openModal = ref(false)
@@ -44,8 +45,6 @@
       :type1="room.type1"
       :type2="room.type2"
       :tasks="room.tasks"
-      :v-model:new-caught-pokemon="newCaughtPokemon"
-      :v-model:open-modal="openModal"
     />
   </div>
 </template>

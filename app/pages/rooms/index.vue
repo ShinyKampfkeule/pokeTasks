@@ -1,6 +1,7 @@
 <script setup lang="ts">
   definePageMeta({
-    layout: 'rooms'
+    layout: 'rooms',
+    middleware: ['authenticated']
   })
 </script>
 

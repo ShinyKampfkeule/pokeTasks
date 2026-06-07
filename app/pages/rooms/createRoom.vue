@@ -2,7 +2,8 @@
   import type { CreateRoomState } from '~/types/createRoomState'
 
   definePageMeta({
-    layout: 'rooms'
+    layout: 'rooms',
+    middleware: ['authenticated']
   })
 
   const state = reactive<CreateRoomState>({

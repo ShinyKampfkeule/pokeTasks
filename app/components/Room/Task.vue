@@ -17,14 +17,16 @@
   const queryClient = useQueryClient()
   const { isPending, isError, error, isSuccess, mutate } = useMutation({
     mutationFn: () =>
-      $fetch('/api/tasks/completeTask', {
+      $fetch<unknown>('/api/tasks/completeTask', {
         method: 'POST',
         body: {
-          taskId: props.taskId
+          taskId: props.taskId,
+          completed: !props.completed
         }
       }),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['room', props.roomId] })
+      await queryClient.invalidateQueries({ queryKey: ['rooms'] })
     }
   })
 

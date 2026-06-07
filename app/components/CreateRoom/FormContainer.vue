@@ -19,7 +19,7 @@
   const queryClient = useQueryClient()
   const { isPending, isError, error, isSuccess, mutate } = useMutation({
     mutationFn: () =>
-      $fetch('/api/room/create', {
+      $fetch<unknown>('/api/room/create', {
         method: 'POST',
         body: state.value
       }),
